@@ -1,0 +1,18 @@
+{
+    "name": "wediExt",
+    "description": "Extension description", 
+    "creator": "mdeaconu", 
+    "background_scripts": [
+        "main.js"
+    ], 
+    "content_scripts": [
+		"WediOnAccess.js"
+	], 
+    "homepage_url": "https://github.com/mdeaconu/wedi", 
+    "version": "0.1.0", 
+    "browser_button": {
+        "caption": "wedi", 
+        "icon": "icons/button.png", 
+        "tooltipText": "Wedi"
+    }
+}
