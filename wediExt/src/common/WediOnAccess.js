@@ -2,18 +2,20 @@
 // @name wediExt
 // @include http://*
 // @include https://*
+// @require lib/microformat-shiv.js
 // @all-frames true
 // ==/UserScript==
 
-kango.invokeAsync('kango.storage.getItem', 'colorNumber', function(data) {
-    var colorNumber = data || 0;
-    var colors = ['red','green','blue'];
-	document.body.style.background = colors[colorNumber++];
-    if (colorNumber > colors.length) {
-    	colorNumber = 0;
-    }
-    // Save color number
-    kango.invokeAsync('kango.storage.setItem', 'colorNumber', colorNumber);
+var items = microformats.getItems(),
+	data = {'data': items, 'url': document.location.href};
 
-	kango.dispatchMessage('content', Math.floor((Math.random() * 20) + 1));
+if (items && items.items.length > 0) {
+	kango.dispatchMessage('content', items.items.length);
+}
+
+kango.addMessageListener('getData', function() {
+	kango.console.log('length : ' + items.items.length);
+	if (items && items.items.length > 0) {
+		kango.dispatchMessage('sendData', data);
+	}
 });

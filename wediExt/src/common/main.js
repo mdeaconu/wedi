@@ -9,7 +9,7 @@
 		self.clear();
 	});
                          
-	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 400, height:140});
+	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 500, height:440});
 }
 
 WediExtension.prototype = {	
