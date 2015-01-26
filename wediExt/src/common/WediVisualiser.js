@@ -78,11 +78,13 @@ KangoAPI.onReady(function() {
 	kango.dispatchMessage('offline');
 
 	kango.addMessageListener('sendMFData', function(event) {
+		document.getElementById('empty').style.display = 'none';
 		document.getElementById('mf').style.display = 'block';
 		show_mf(event.data);
 	});
 
 	kango.addMessageListener('sendMDData', function(event) {
+		document.getElementById('empty').style.display = 'none';
 		document.getElementById('md').style.display = 'block';
 		show_md(event.data);
 	});

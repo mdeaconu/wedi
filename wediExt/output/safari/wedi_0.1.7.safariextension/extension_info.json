@@ -11,7 +11,7 @@
         "main.js"
     ], 
     "homepage_url": "https://github.com/mdeaconu/wedi", 
-    "version": "0.1.6", 
+    "version": "0.1.7", 
     "framework_package_id": "dev", 
     "id": "com.kangoextensions.wediext", 
     "browser_button": {
