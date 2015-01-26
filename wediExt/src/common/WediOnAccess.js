@@ -22,6 +22,7 @@ var checkPages = function() {
 		notificationFlag |= 1 << 0;
 	}
 
+	kango.console.log('url microformats : ' + microformats_data.url);
 	kango.addMessageListener('getMFData', function() {
 		if (microformats_items && microformats_items.items.length > 0) {
 			kango.dispatchMessage('sendMFData', microformats_data);
@@ -33,6 +34,7 @@ var checkPages = function() {
 	var microdata_json = JSON.parse(microdata);
 	var	microdata_data = {'data': microdata_json, 'url': document.location.href};
 
+	kango.console.log('url microdata_data : ' + microdata_data.url);
 	if (microdata_json && microdata_json.items.length > 0) {
 		totalNotifications += 1;
 		notificationFlag |= 1 << 1;

@@ -1,7 +1,7 @@
 body {
-  color: #FFF;
-  background: rgb(78,89,105);
-  font-size: 14px;
+/*  color: #FFF;
+  background: rgb(78,89,105);*/
+  font-size: 10pt;
   font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
   line-height: 25px;
   overflow: hidden;
@@ -9,6 +9,43 @@ body {
   margin: 0;
 }
 
+.header {
+  font-size: 25pt;
+  margin-bottom: 10px;
+}
+
+.section {
+  margin-bottom: 15px;
+}
+.section .title {
+  font-size: 11pt;
+  margin-bottom: 4px;
+  margin-left: 3px;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.box {
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #ccc;
+  line-height: 150%;
+  margin: 0 20px;
+  padding: 5px;
+}
+
+.fieldName {
+  font-weight: bold;
+}
+
+.tag {
+  background: #eee;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 8pt;
+  margin-right: 4px;
+  padding: 0 4px;
+}
 h1 {
   font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 5px 5px 5px 5px;
@@ -24,59 +61,35 @@ h1 {
   border-radius: 4px 4px 4px 4px;
 }
 
-.contur {
-  background-color: rgb(212,208,200);
-  margin: 5px 5px 5px 5px;
-  border-radius: 4px 4px 4px 4px;
-}
-
-.contur h3 span {
-  display: block;
-  font-weight: normal;
-  padding-left: 3px;
-  color: rgb(53, 85, 124);
-}
-
 #mf, #md {
   display: none;
 }
+
 .json_data {
-  padding: 0px 5px 5px 5px;
-}
-
-.json_data p {
-  color: rgb(53, 85, 124);
-  padding-left: 5px;
-}
-
-.json_data pre {
   background-color:#302F2D;
   border: none;
   border-radius: 4px 4px 4px 4px;
   font-family:  consolas, 'andale mono','courier new', monospace;
   padding: 6px;
-  color: rgb(238, 141, 122);
+  color: rgb(182, 231, 80);
   white-space: pre-wrap;
+  font-size: 12px;
   margin: 3px auto;
   font-weight: normal;
 }
 
-.json_data code {
+/*.json_data code {
   font-size: 12px;
   line-height: normal;
-}
+}*/
 
-.button a {
+.button p {
+  width: 50%;
   margin: 5px;
-  padding: 5px;
   background: #5082BC;
   cursor: pointer;
   outline: none;
   color: #FFF !important;
   text-decoration: none !important;
   border-radius: 2px;
-}
-
-.button a:hover {
-  background: #3e6ea5;
 }

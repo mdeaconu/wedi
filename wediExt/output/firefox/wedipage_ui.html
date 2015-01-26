@@ -1,33 +1,34 @@
 <html>
 <head>
+  <meta charset="utf-8" />
   <script type="text/javascript" src="kango-ui/kango_api.js"></script>
   <script type="text/javascript" src="lib/jsbeautify.js"></script>
   <script type="text/javascript" src="WediVisualiser.js"></script>
   <link rel="stylesheet" type="text/css" href="css/visualiser.css" />
 </head>
 <body>
-  <h1>#wedi</h1>
+  <div class="header">
+    <img src="icons/icon32.png" alt=""/>
+    #wedi
+  </div>
   <div class="main">
     <div id="empty">
-      <center><span class="button">
-        <a href="#">Press Ctrl+F5 to reload the current tab</a></center>
+      <center><span class="button"><p>Press F5 to reload the current tab</p></center>
     </div>
-    <div id="mf" class="contur">
-      <h3><span id="found_mf"></span></h3>
-      <div class="json_data">
-        <p id="address_mf" ></p>
-        <pre>
-          <code id="code_mf"></code>
-        </pre>
+    <div id="mf" class="section">
+      <div class="title">Microformats</div>
+      <div class="box">
+        <div><span class="fieldName">URL:</span><span id="address_mf"></span></div>
+        <div><span id="tags_mf" class="fieldName">Found:</span></div>
+        <div><span class="fieldName">JSON:</span><pre class="json_data"><code id="code_mf"></code></pre></div>
       </div>
     </div>
-    <div id="md" class="contur">
-      <h3><span id="found_md"></span></h3>
-      <div class="json_data">
-        <p id="address_md" ></p>
-        <pre>
-          <code id="code_md"></code>
-        </pre>
+    <div id="md" class="section">
+      <div class="title">Microdata</div>
+      <div class="box">
+        <div><span class="fieldName">URL:</span><span id="address_md"></span></div>
+        <div><span id="tags_md" class="fieldName">Found:</span></div>
+        <div><span class="fieldName">JSON:</span><pre class="json_data"><code id="code_md"></code></pre></div>
       </div>
     </div>
   </div>

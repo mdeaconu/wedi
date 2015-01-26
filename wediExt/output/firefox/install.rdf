@@ -2,7 +2,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:id>{71EA1FE9-ADDA-43A0-9987-99A145107E68}</em:id>
         <em:name>#wedi</em:name>
-        <em:version>0.1.7</em:version>
+        <em:version>0.1.8</em:version>
         <em:targetApplication>
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>

@@ -13,27 +13,36 @@ function show_mf(envelope) {
 function found_mf(items, url) {
 	var found = document.getElementById("found_mf"),
 	address = document.getElementById("address_mf"),
-	out = [],
+	tags = [],
 	types;
+
+	address.textContent = url;
 
 	if (items) {
 		for (var i=0; i<items.length; ++i) {
 			types = items[i].type;
 			for (var x=0; x<types.length; ++x) {
-				if (out.indexOf(types[x]) == -1) {
-					out.push(types[x])
+				if (tags.indexOf(types[x]) == -1) {
+					tags.push(types[x])
 				}
 			}
 		}
 	}
-
-	if (out.length > 0) {
-		found.textContent = " Found: " + out.join(", ");
-	} else {
-		found.textContent = " No microformats where found on this page";
+	if (tags.length > 0) {
+		var root_tag = document.getElementById('tags_mf');
+		if (root_tag.hasChildNodes()) {
+			var elem = root_tag.firstChild;
+			while (elem.firstChild) {
+  				elem.removeChild(elem.firstChild);
+			}
+		}
+		for (var x = 0; x < tags.length; ++x) {
+			var tagSpan = document.createElement('span');
+			tagSpan.setAttribute('class', 'tag');
+			tagSpan.innerHTML = tags[x];
+			document.getElementById('tags_mf').appendChild(tagSpan);
+		}		
 	}
-
-	address.textContent = url;
 }
 
 function show_md(envelope) {
@@ -51,27 +60,36 @@ function show_md(envelope) {
 function found_md(items, url) {
 	var found = document.getElementById("found_md"),
 	address = document.getElementById("address_md"),
-	out = [],
+	tags = [],
 	types;
+
+	address.textContent = url;
 
 	if (items) {
 		for (var i=0; i<items.length; ++i) {
 			types = items[i].type;
 			for (var x=0; x<types.length; ++x) {
-				if (out.indexOf(types[x]) == -1) {
-					out.push(types[x])
+				if (tags.indexOf(types[x]) == -1) {
+					tags.push(types[x])
 				}
 			}
 		}
 	}
-
-	if (out.length > 0) {
-		found.textContent = " Found: " + out.join(", ");
-	} else {
-		found.textContent = " No microdata where found on this page";
+	if (tags.length > 0) {
+		var root_tag = document.getElementById('tags_md');
+		if (root_tag.hasChildNodes()) {
+			var elem = root_tag.firstChild;
+			while (elem.firstChild) {
+  				elem.removeChild(elem.firstChild);
+			}
+		}
+		for (var x = 0; x < tags.length; ++x) {
+			var tagSpan = document.createElement('span');
+			tagSpan.setAttribute('class', 'tag');
+			tagSpan.innerHTML = tags[x];
+			document.getElementById('tags_md').appendChild(tagSpan);
+		}		
 	}
-
-	address.textContent = url;
 }
 
 KangoAPI.onReady(function() {
