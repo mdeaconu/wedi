@@ -11,7 +11,7 @@
         "main.js"
     ], 
     "homepage_url": "https://github.com/mdeaconu/wedi", 
-    "version": "0.1.3", 
+    "version": "0.1.5", 
     "framework_package_id": "dev", 
     "id": "{71EA1FE9-ADDA-43A0-9987-99A145107E68}", 
     "browser_button": {

@@ -8,8 +8,13 @@
 	kango.addMessageListener('offline', function(event) {
 		self.clear();
 	});
-                         
-	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 500, height:440});
+
+	var check = function() {
+		self.checkPage();
+	}
+
+	kango.browser.addEventListener(kango.browser.event.TAB_CHANGED, check);  
+	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 500, height:500});
 }
 
 WediExtension.prototype = {	
@@ -25,13 +30,32 @@ WediExtension.prototype = {
 		kango.ui.browserButton.setBadgeValue(count);
 	},
 
-	setNotification: function(count) {
+	setNotification: function(notifications) {
 		var self = this;
-		if (count == 0) {
+		kango.console.log("notifications.total : " + notifications.total);
+		kango.console.log("notifications.flag : " + notifications.flag);
+		if (notifications.total == 0) {
 			self._setOffline();
 		} else {
-			self._setUnseenCount(count);
+			self._setUnseenCount(notifications.total);
+			if (notifications.flag & (1 << 0)) {
+				kango.ui.browserButton.setBadgeBackgroundColor([35,168,62,255]); // GREEN
+			} else if (notifications.flag & (1 << 1)) {
+				kango.ui.browserButton.setBadgeBackgroundColor([255,0,0,255]);  // RED
+			} else if (notifications.flag & (1 << 2)) {
+				kango.ui.browserButton.setBadgeBackgroundColor([255,255,0,255]); // YELLOW
+			}
 		}
+	},
+
+	checkPage: function() {
+		var self = this;
+		kango.browser.tabs.getCurrent(function(tab) {
+			if (!tab.isActive()) {
+				return;
+			}
+			tab.dispatchMessage('check');
+		});
 	},
 
 	clear: function() {

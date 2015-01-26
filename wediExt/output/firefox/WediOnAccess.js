@@ -6,39 +6,56 @@
 // @require lib/jquery-1.6.4.min.js
 // @require lib/jquery.microdata.js
 // @require lib/jquery.microdata.json.js
-// @all-frames true
 // ==/UserScript==
 
-var totalNotifications = 0;
 
-/* microformats */
-var microformats_items = microformats.getItems(),
-	microformats_data = {'data': microformats_items, 'url': document.location.href};
+var checkPages = function() {
+	var totalNotifications = 0;
+	var notificationFlag = 0;
+	/* microformats */
+	var microformats_items = microformats.getItems();
+	var microformats_data = {'data': microformats_items, 'url': document.location.href};
 
-if (microformats_items && microformats_items.items.length > 0) {
-	totalNotifications += microformats_items.items.length;	
-}
-
-kango.addMessageListener('getMFData', function() {
 	if (microformats_items && microformats_items.items.length > 0) {
-		kango.dispatchMessage('sendMFData', microformats_data);
+		totalNotifications += 1;
+		notificationFlag |= 1 << 0;
 	}
-});
 
-/* microdata */
-var microdata_json = $.microdata.json(),
-	microdata_data = {'data': microdata_json, 'url': document.location.href};
+	kango.addMessageListener('getMFData', function() {
+		if (microformats_items && microformats_items.items.length > 0) {
+			kango.dispatchMessage('sendMFData', microformats_data);
+		}
+	});
 
-if (microdata_json && microdata_data.items.length > 0) {
-	totalNotifications += microdata_data.items.length;
+	/* microdata */
+	var microdata = $.microdata.json();
+	var microdata_json = JSON.parse(microdata);
+	var	microdata_data = {'data': microdata_json, 'url': document.location.href};
+
+	if (microdata_json && microdata.length > 1) {
+		totalNotifications += 1;
+		notificationFlag |= 1 << 1;
+	}
+
+	kango.addMessageListener('getMDData', function() {
+		if (microdata_json && microdata.length > 1) {
+			kango.dispatchMessage('sendMDData', microdata_data);
+		}
+	});
+
+	/* send content*/
+	var data = {
+		total: totalNotifications,
+		flag: notificationFlag
+	};
+
+	if (totalNotifications) {
+		kango.dispatchMessage('content', data);
+	}
 }
 
-kango.addMessageListener('getMDData', function() {
-	if (microdata_json && microdata_json.items.length > 0) {
-		kango.dispatchMessage('sendMDData', microdata_data);
-	}
-});
+checkPages();
 
-if (totalNotifications) {
-	kango.dispatchMessage('content', totalNotifications);
-}
+kango.addMessageListener('check', function(event) {
+	checkPages();
+});

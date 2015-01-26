@@ -3,23 +3,29 @@
   <script type="text/javascript" src="kango-ui/kango_api.js"></script>
   <script type="text/javascript" src="lib/jsbeautify.js"></script>
   <script type="text/javascript" src="WediVisualiser.js"></script>
-  <link rel="stylesheet" type="text/css" media="all" href="css/visualiser.css" />
+  <link rel="stylesheet" type="text/css" href="css/visualiser.css" />
 </head>
 <body>
   <h1>#wedi</h1>
-  <h2><span id="found_mf"></span></h2>
-  <div class="json_data">
-    <p id="address_mf" />
-    <pre>
-      <code id="code_mf"></code>
-    </pre>
-  </div>
-  <span id="found_md"></span>
-  <div id="json_data">
-    <p id="address_md" />
-    <pre>
-      <code id="code_md"></code>
-    </pre>
+  <div class="main">    
+    <div id="mf" class="contur">
+      <h3><span id="found_mf"></span></h3>
+      <div class="json_data">
+        <p id="address_mf" ></p>
+        <pre>
+          <code id="code_mf"></code>
+        </pre>
+      </div>
+    </div>
+    <div id="md" class="contur">
+      <h3><span id="found_md"></span></h3>
+      <div class="json_data">
+        <p id="address_md" ></p>
+        <pre>
+          <code id="code_md"></code>
+        </pre>
+      </div>
+    </div>
   </div>
 </body>
 </html>
