@@ -4,6 +4,7 @@
   <script type="text/javascript" src="kango-ui/kango_api.js"></script>
   <script type="text/javascript" src="lib/jsbeautify.js"></script>
   <script type="text/javascript" src="WediVisualiser.js"></script>
+
   <link rel="stylesheet" type="text/css" href="css/visualiser.css" />
 </head>
 <body>
@@ -13,14 +14,14 @@
   </div>
   <div class="main">
     <div id="empty">
-      <center><span class="button"><p>Press F5 to reload the current tab</p></center>
+      <center><span class="button"><p>Press F5 to reload the current tab</p></span></center>
     </div>
     <div id="mf" class="section">
       <div class="title">Microformats</div>
       <div class="box">
         <div><span class="fieldName">URL:</span><span id="address_mf"></span></div>
         <div><span id="tags_mf" class="fieldName">Found:</span></div>
-        <div><span class="fieldName">JSON:</span><pre class="json_data"><code id="code_mf"></code></pre></div>
+        <div><span class="fieldName">JSON:</span><pre class="json_data" id="code_mf"></pre></div>
       </div>
     </div>
     <div id="md" class="section">
@@ -28,7 +29,7 @@
       <div class="box">
         <div><span class="fieldName">URL:</span><span id="address_md"></span></div>
         <div><span id="tags_md" class="fieldName">Found:</span></div>
-        <div><span class="fieldName">JSON:</span><pre class="json_data"><code id="code_md"></code></pre></div>
+        <div><span class="fieldName">JSON:</span><pre class="json_data" id="code_md"></pre></div>
       </div>
     </div>
   </div>

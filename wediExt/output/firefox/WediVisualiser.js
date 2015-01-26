@@ -21,20 +21,20 @@ function found_mf(items, url) {
 	if (items) {
 		for (var i=0; i<items.length; ++i) {
 			types = items[i].type;
-			for (var x=0; x<types.length; ++x) {
-				if (tags.indexOf(types[x]) == -1) {
-					tags.push(types[x])
+			if (typeof types != 'undefined') {
+				for (var x=0; x<types.length; ++x) {
+					if (tags.indexOf(types[x]) === -1) {
+						tags.push(types[x])
+					}
 				}
 			}
 		}
 	}
 	if (tags.length > 0) {
-		var root_tag = document.getElementById('tags_mf');
-		if (root_tag.hasChildNodes()) {
-			var elem = root_tag.firstChild;
-			while (elem.firstChild) {
-  				elem.removeChild(elem.firstChild);
-			}
+		var dom = document.getElementById('tags_mf');
+		var len = dom.childNodes.length;
+		for (var x = len-1; x > 0; --x) {
+			dom.removeChild(dom.childNodes[x]); 
 		}
 		for (var x = 0; x < tags.length; ++x) {
 			var tagSpan = document.createElement('span');
@@ -68,20 +68,21 @@ function found_md(items, url) {
 	if (items) {
 		for (var i=0; i<items.length; ++i) {
 			types = items[i].type;
-			for (var x=0; x<types.length; ++x) {
-				if (tags.indexOf(types[x]) == -1) {
-					tags.push(types[x])
+			if (typeof types != 'undefined') {
+				for (var x=0; x<types.length; ++x) {
+					if (tags.indexOf(types[x]) === -1) {
+						tags.push(types[x])
+					}
 				}
 			}
 		}
 	}
+	kango.console.log('tags : ' + tags.length);
 	if (tags.length > 0) {
-		var root_tag = document.getElementById('tags_md');
-		if (root_tag.hasChildNodes()) {
-			var elem = root_tag.firstChild;
-			while (elem.firstChild) {
-  				elem.removeChild(elem.firstChild);
-			}
+		var dom = document.getElementById('tags_md');
+		var len = dom.childNodes.length;
+		for (var x = len-1; x > 0; --x) {
+			dom.removeChild(dom.childNodes[x]); 
 		}
 		for (var x = 0; x < tags.length; ++x) {
 			var tagSpan = document.createElement('span');

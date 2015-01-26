@@ -76,12 +76,8 @@ h1 {
   font-size: 12px;
   margin: 3px auto;
   font-weight: normal;
+  overflow-x: hidden;
 }
-
-/*.json_data code {
-  font-size: 12px;
-  line-height: normal;
-}*/
 
 .button p {
   width: 50%;

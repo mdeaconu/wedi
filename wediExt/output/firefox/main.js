@@ -14,7 +14,7 @@
 	}
 
 	kango.browser.addEventListener(kango.browser.event.TAB_CHANGED, check);  
-	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 500, height:500});
+	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 500, height:450});
 }
 
 WediExtension.prototype = {	
@@ -32,8 +32,6 @@ WediExtension.prototype = {
 
 	setNotification: function(notifications) {
 		var self = this;
-		kango.console.log("notifications.total : " + notifications.total);
-		kango.console.log("notifications.flag : " + notifications.flag);
 		if (notifications.total == 0) {
 			self._setOffline();
 		} else {
