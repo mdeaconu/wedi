@@ -3,3 +3,5 @@ microformats sites
 * http://telcoavi.es/contacto.php
 * http://www.asiabiz.sg/contact-us/
 
+microdata sites
+* https://github.com/LawrenceWoodman/mida/wiki/Sites-Using-Microdata

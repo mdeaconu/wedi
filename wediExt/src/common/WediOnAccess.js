@@ -6,6 +6,7 @@
 // @require lib/jquery-1.6.4.min.js
 // @require lib/jquery.microdata.js
 // @require lib/jquery.microdata.json.js
+// @require lib/helper.js
 // ==/UserScript==
 
 
@@ -32,17 +33,20 @@ var checkPages = function() {
 	var microdata_json = JSON.parse(microdata);
 	var	microdata_data = {'data': microdata_json, 'url': document.location.href};
 
-	if (microdata_json && microdata.length > 1) {
+	if (microdata_json && microdata_json.items.length > 0) {
 		totalNotifications += 1;
 		notificationFlag |= 1 << 1;
 	}
 
 	kango.addMessageListener('getMDData', function() {
-		if (microdata_json && microdata.length > 1) {
+		if (microdata_json && microdata_json.items.length > 0) {
 			kango.dispatchMessage('sendMDData', microdata_data);
 		}
 	});
 
+	if (totalNotifications == 2) {
+		notificationFlag |= 1 << 2;
+	}
 	/* send content*/
 	var data = {
 		total: totalNotifications,
