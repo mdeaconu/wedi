@@ -9,10 +9,10 @@
 // @require lib/helper.js
 // ==/UserScript==
 
-
 var checkPages = function() {
 	var totalNotifications = 0;
 	var notificationFlag = 0;
+
 	/* microformats */
 	var microformats_items = microformats.getItems();
 	var microformats_data = {'data': microformats_items, 'url': document.location.href};
@@ -44,9 +44,38 @@ var checkPages = function() {
 		}
 	});
 
-	if (totalNotifications == 2) {
-		notificationFlag |= 1 << 2;
+	/* RDFa */
+	var details = {
+		method: 'GET',
+		url: 'http://getschema.org/rdfaliteextractor',
+		async: false,
+		params: {'url': document.location.href, 'out': 'json'},
+		contentType: 'json'
 	}
+
+	var response = null;
+
+	kango.xhr.send(details, function(data) {
+		kango.console.log('status : ' + data.status);
+		kango.console.log('url : ' + document.location.href);
+        if (data.status == 200 && data.response != null) {
+        	response = {'data':data.response, 'url': document.location.href};
+        	kango.console.log('Ok');
+        	if (response && response.length) {
+        		totalNotifications += 1;
+        		notificationFlag |= 1 << 2;
+        	}
+        } else { 
+	        kango.console.log('something went wrong');
+        }
+	});
+
+	kango.addMessageListener('getRDFaData', function() {
+		if (response && response.length) {
+			kango.dispatchMessage('sendRDFaData', response);
+		}
+	});
+
 	/* send content*/
 	var data = {
 		total: totalNotifications,

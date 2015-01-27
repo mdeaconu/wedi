@@ -5,7 +5,11 @@
     margin-top:2px;
 }
 
-.header {
+.header_mf {
+    cursor:pointer;
+}
+
+.header_md {
     cursor:pointer;
 }
 
@@ -64,9 +68,10 @@
     float:right;
 }
 
-.value{
+.value {
     color:red;
-    font-size: 9pt;    
+    font-size: 9pt; 
+    overflow: hidden;   
 }
 
 .hide {

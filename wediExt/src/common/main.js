@@ -37,12 +37,22 @@ WediExtension.prototype = {
 		} else {
 			self._setUnseenCount(notifications.total);
 
-			if (notifications.flag & (1 << 2)) {
-				kango.ui.browserButton.setBadgeBackgroundColor([255,0,255,255]); // FUXIA
-			} else if (notifications.flag & (1 << 1) && !(notifications.flag & (1 << 0))) {
-				kango.ui.browserButton.setBadgeBackgroundColor([255,0,0,255]);  // RED
-			} else if (notifications.flag & (1 << 0)) {
+			kango.console.log('flag : ' + notifications.flag);
+
+			switch (notifications.flag) {
+			case 1: 
+			case 2:
+			case 4:
 				kango.ui.browserButton.setBadgeBackgroundColor([35,168,62,255]); // GREEN
+				break;
+			case 3:
+			case 5:
+			case 6:
+				kango.ui.browserButton.setBadgeBackgroundColor([255,0,0,255]);  // RED
+				break;
+			case 7:
+				kango.ui.browserButton.setBadgeBackgroundColor([255,0,255,255]); // FUXIA
+				break;	
 			}
 		}
 	},

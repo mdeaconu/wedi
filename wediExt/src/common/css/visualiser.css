@@ -9,7 +9,7 @@ body {
   margin: 0;
 }
 
-.header {
+.hheader {
   font-size: 25pt;
   margin-bottom: 10px;
 }
@@ -61,7 +61,7 @@ h1 {
   border-radius: 4px 4px 4px 4px;
 }
 
-#mf, #md {
+#mf, #md, #rdf {
   display: none;
 }
 

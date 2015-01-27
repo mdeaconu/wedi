@@ -1,6 +1,6 @@
-var transforms = {
+var transforms_mf = {
   'object':{'tag':'div','class':'package ${show} ${type}','children':[
-  {'tag':'div','class':'header','children':[
+  {'tag':'div','class':'header_mf','children':[
   {'tag':'div','class':function(obj){
     if( getValue(obj.value) !== undefined ) return('arrow hide');
     else return('arrow');
@@ -13,25 +13,44 @@ var transforms = {
   }},
   {'tag':'span','class':'type','html':'${type}'}
   ]},
-  {'tag':'div','class':'children','children':function(obj){return(children(obj.value));}}
+  {'tag':'div','class':'children','children':function(obj){return(children(obj.value, transforms_mf));}}
   ]}
 };
 
+var transforms_md = {
+  'object':{'tag':'div','class':'package ${show} ${type}','children':[
+  {'tag':'div','class':'header_md','children':[
+  {'tag':'div','class':function(obj){
+    if( getValue(obj.value) !== undefined ) return('arrow hide');
+    else return('arrow');
+  }},
+  {'tag':'span','class':'name','html':'${name}'},
+  {'tag':'span','class':'value','html':function(obj) {
+    var value = getValue(obj.value);
+    if( value !== undefined ) return(" : " + value);
+    else return('');
+  }},
+  {'tag':'span','class':'type','html':'${type}'}
+  ]},
+  {'tag':'div','class':'children','children':function(obj){return(children(obj.value, transforms_md));}}
+  ]}
+};
 var btn1Pressed = false;
 var btn2Pressed = false;
 
 $(function(){
-  $('#btnVisualize1').click(function() {
+  $('#btnVisualize1').click(function() { 
+    var json_string = $('#code_mf').text();
+    try {
+      var json = JSON.parse(json_string);
+      visualize_mf(json);
+    } catch (e) {
+      alert("Sorry error in json string, please correct and try again: " + e.message);
+    }      
     if (!btn1Pressed) {
-      var json_string = $('#code_mf').text();
-      try {
-        var json = JSON.parse(json_string);
-        visualize_mf(json);
-      } catch (e) {
-        alert("Sorry error in json string, please correct and try again: " + e.message);
-      }      
       btn1Pressed = true;
       $('#code_mf').hide('fast');
+      $('#code_mf_h').show();
     } else {
       btn1Pressed = false;
       $('#code_mf').show();
@@ -42,14 +61,13 @@ $(function(){
 
 function visualize_mf(json) {   
   $('#code_mf_h').html('');
-  $('#code_mf_h').json2html(convert('json',json,'open'),transforms.object);
+  $('#code_mf_h').json2html(convert('json',json,'open'),transforms_mf.object);
 
-  regEvents();    
+  regEvents_mf();    
 }
 
 $(function(){
   $('#btnVisualize2').click(function() {
-    if (!btn2Pressed) {
       var json_string = $('#code_md').text();
       try {
         var json = JSON.parse(json_string);
@@ -57,11 +75,13 @@ $(function(){
       } catch (e) {
         alert("Sorry error in json string, please correct and try again: " + e.message);
       }      
+    if (!btn2Pressed) {
       btn2Pressed = true;
       $('#code_md').hide('fast');
+      $('#code_md_h').show();
     } else {
       btn2Pressed = false;
-      $('#code_mf').show();
+      $('#code_md').show();
       $('#code_md_h').hide('fast');
     }      
   });
@@ -69,9 +89,9 @@ $(function(){
 
 function visualize_md(json) {   
   $('#code_md_h').html('');
-  $('#code_md_h').json2html(convert('json',json,'open'),transforms.object);
+  $('#code_md_h').json2html(convert('json',json,'open'),transforms_md.object);
 
-  regEvents();    
+  regEvents_md();    
 }
 
 function getValue(obj) {
@@ -98,7 +118,7 @@ function getValue(obj) {
 }
 
 //Transform the children
-function children(obj) {
+function children(obj, transforms) {
   var type = $.type(obj);
   //Determine if this object has children
   switch(type) {
@@ -146,9 +166,24 @@ function convert(name,obj,show) {
   return( {'name':name,'value':children,'type':type,'show':show} );
 }
 
-function regEvents() {
+function regEvents_mf() {
 
-  $('.header').click(function() {
+  $('.header_mf').click(function() {
+    var parent = $(this).parent();
+
+    if (parent.hasClass('closed')) {
+      parent.removeClass('closed');
+      parent.addClass('open');
+    } else {
+      parent.removeClass('open');
+      parent.addClass('closed');
+    }   
+  });
+}
+
+function regEvents_md() {
+
+  $('.header_md').click(function() {
     var parent = $(this).parent();
 
     if (parent.hasClass('closed')) {

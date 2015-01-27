@@ -1,3 +1,16 @@
+function show_rdf(envelope) {
+	var code = document.getElementById("code_rdf");
+	var address =document.getElementById("address_rdf");
+
+	if (envelope) {
+		code = document.getElementById("code_rdf");
+		jsonstring = JSON.stringify(envelope.data)
+		code.textContent = js_beautify(jsonstring);
+
+		address.textContent = envelope.url;
+	}	
+}
+
 function show_mf(envelope) {
 	var code = document.getElementById("code_mf");
 
@@ -11,8 +24,7 @@ function show_mf(envelope) {
 }
 
 function found_mf(items, url) {
-	var found = document.getElementById("found_mf"),
-	address = document.getElementById("address_mf"),
+	var address = document.getElementById("address_mf"),
 	tags = [],
 	types;
 
@@ -58,8 +70,7 @@ function show_md(envelope) {
 }
 
 function found_md(items, url) {
-	var found = document.getElementById("found_md"),
-	address = document.getElementById("address_md"),
+	var address = document.getElementById("address_md"),
 	tags = [],
 	types;
 
@@ -106,6 +117,19 @@ KangoAPI.onReady(function() {
 		document.getElementById('empty').style.display = 'none';
 		document.getElementById('md').style.display = 'block';
 		show_md(event.data);
+	});
+	kango.addMessageListener('sendRDFaData', function(event) {
+		document.getElementById('empty').style.display = 'none';
+		document.getElementById('rdf').style.display = 'block';
+		show_rdf(event.data);
+	});
+
+	kango.browser.tabs.getCurrent(function(tab) {
+		if (!tab.isActive()) {
+			return;
+		}
+
+		tab.dispatchMessage('getRDFaData');
 	});
 
 	kango.browser.tabs.getCurrent(function(tab) {
