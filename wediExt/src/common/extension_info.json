@@ -6,10 +6,11 @@
         "main.js"
     ], 
     "content_scripts": [
-		"WediOnAccess.js"
+		"WediOnAccess.js",
+        "WediExporter.js"
 	], 
     "homepage_url": "https://github.com/mdeaconu/wedi", 
-    "version": "0.2.3", 
+    "version": "0.2.4", 
     "browser_button": {
         "caption": "wedi", 
         "icon": "icons/button.png", 

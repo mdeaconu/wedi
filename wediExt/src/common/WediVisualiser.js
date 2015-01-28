@@ -1,15 +1,15 @@
 function show_rdf(envelope) {
 	var code 	= document.getElementById("code_rdf");
 	var address = document.getElementById("address_rdf");
-	var xml		= document.getElementById("xml_rdf");
+	var xml		= document.getElementById("code_xml");
 
 	if (envelope) {
 		code = document.getElementById("code_rdf");
 		jsonstring = JSON.stringify(envelope.data)
 		code.textContent = js_beautify(jsonstring);
 
-		address.textContent = envelope.url;
-		xml.textContent = '<?xml version="1.0" encoding="utf-8"?><aTag>something</aTag>';
+		address.textContent = envelope.url;  
+		xml.textContent = envelope.xml;
 	}	
 }
 

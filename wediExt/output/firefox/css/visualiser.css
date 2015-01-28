@@ -61,7 +61,7 @@ h1 {
   border-radius: 4px 4px 4px 4px;
 }
 
-#mf, #md, #rdf, #xml_rdf {
+#mf, #md, #rdf, #xml_rdf, #code_xml {
   display: none;
 }
 

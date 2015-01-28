@@ -35,8 +35,29 @@ var transforms_md = {
   {'tag':'div','class':'children','children':function(obj){return(children(obj.value, transforms_md));}}
   ]}
 };
+
+var transforms_rdf = {
+  'object':{'tag':'div','class':'package ${show} ${type}','children':[
+  {'tag':'div','class':'header_rdf','children':[
+  {'tag':'div','class':function(obj){
+    if( getValue(obj.value) !== undefined ) return('arrow hide');
+    else return('arrow');
+  }},
+  {'tag':'span','class':'name','html':'${name}'},
+  {'tag':'span','class':'value','html':function(obj) {
+    var value = getValue(obj.value);
+    if( value !== undefined ) return(" : " + value);
+    else return('');
+  }},
+  {'tag':'span','class':'type','html':'${type}'}
+  ]},
+  {'tag':'div','class':'children','children':function(obj){return(children(obj.value, transforms_rdf));}}
+  ]}
+};
+
 var btn1Pressed = false;
 var btn2Pressed = false;
+var btn3Pressed = false;
 
 $(function(){
   $('#btnVisualize1').click(function() { 
@@ -92,6 +113,36 @@ function visualize_md(json) {
   $('#code_md_h').json2html(convert('json',json,'open'),transforms_md.object);
 
   regEvents_md();    
+}
+
+$(function(){
+  $('#btnVisualize3').click(function() { 
+    var json_string = $('#code_rdf').text();
+    try {
+      var json = JSON.parse(json_string);
+      visualize_rdf(json);
+    } catch (e) {
+      alert("Sorry error in json string, please correct and try again: " + e.message);
+    }      
+    if (!btn3Pressed) {
+      btn3Pressed = true;
+      $('#code_rdf').hide('fast');
+      $('#code_xml').hide('fast');
+      $('#code_rdf_h').show();
+    } else {
+      btn3Pressed = false;
+      $('#code_rdf').show();
+      $('#code_xml').hide('fast');
+      $('#code_rdf_h').hide('fast');
+    }
+  });
+});
+
+function visualize_rdf(json) {   
+  $('#code_rdf_h').html('');
+  $('#code_rdf_h').json2html(convert('json',json,'open'),transforms_rdf.object);
+
+  regEvents_rdf();    
 }
 
 function getValue(obj) {
@@ -195,3 +246,27 @@ function regEvents_md() {
     }   
   });
 }
+
+function regEvents_rdf() {
+
+  $('.header_rdf').click(function() {
+    var parent = $(this).parent();
+
+    if (parent.hasClass('closed')) {
+      parent.removeClass('closed');
+      parent.addClass('open');
+    } else {
+      parent.removeClass('open');
+      parent.addClass('closed');
+    }   
+  });
+}
+
+
+$(function(){
+  $('#btnVisualize4').click(function() {       
+      $('#code_xml').show();
+      $('#code_rdf_h').hide('fast');
+      $('#code_rdf').hide('fast');
+  });
+});

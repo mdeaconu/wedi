@@ -1,6 +1,7 @@
 {
     "content_scripts": [
-        "WediOnAccess.js"
+        "WediOnAccess.js", 
+        "WediExporter.js"
     ], 
     "name": "#wedi", 
     "creator": "Mihai Deaconu", 
@@ -11,7 +12,7 @@
         "main.js"
     ], 
     "homepage_url": "https://github.com/mdeaconu/wedi", 
-    "version": "0.2.3", 
+    "version": "0.2.4", 
     "framework_package_id": "dev", 
     "id": "{71EA1FE9-ADDA-43A0-9987-99A145107E68}", 
     "browser_button": {

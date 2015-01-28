@@ -9,7 +9,6 @@
   <script type='text/javascript' src='js/json2html.js' ></script>
   <script type='text/javascript' src='js/jquery.json2html.js'></script>
   <script type='text/javascript' src='js/wedi2html.js'></script>
-  <script type="text/javascript" src="WediExporter.js"></script>
   <link rel="stylesheet" type="text/css" href="css/visualiser.css" />
   <link rel="stylesheet" type="text/css" href="css/wedi2html.css" />
 </head>
@@ -56,10 +55,12 @@
         <div><span class="fieldName">URL:</span><span id="address_rdf"></span></div>
         <div>
           <span class="fieldName">JSON:</span>
-          <button id="btnExport" class='tag' style='float:right;'>Export</button>
+          <button id="btnVisualize4" class='tag' style='float:right;'>Visualise RDF/XML</button>
+          <button id="btnVisualize3" class='tag' style='float:right;'>Visualise</button>
           <pre class="json_data" id="code_rdf"></pre>
+          <pre class="json_data" id="code_xml"></pre>
         </div>
-        <code id="xml_rdf"></code>
+        <div id="code_rdf_h"></div>
       </div>
     </div>
   </div>

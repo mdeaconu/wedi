@@ -13,6 +13,10 @@
     cursor:pointer;
 }
 
+.header_rdf {
+    cursor: pointer;
+}
+
 .name {
     color:black;
     font-size: 8pt;
@@ -29,6 +33,7 @@
 .string {
     color:red;
     font-size: 9pt;
+    overflow-x: hidden; 
 }
 .number {
     color:blue;
@@ -71,7 +76,7 @@
 .value {
     color:red;
     font-size: 9pt; 
-    overflow: hidden;   
+    overflow-x: hidden;   
 }
 
 .hide {

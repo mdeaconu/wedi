@@ -7,11 +7,16 @@
 // @require lib/jquery.microdata.js
 // @require lib/jquery.microdata.json.js
 // @require lib/helper.js
+// @require WediExporter.js
 // ==/UserScript==
 
 var checkPages = function() {
 	var totalNotifications = 0;
 	var notificationFlag = 0;
+
+	kango.addMessageListener('sendXML', function(event) {
+		WediExporter(event.data);
+	});
 
 	/* microformats */
 	var microformats_items = microformats.getItems();
@@ -56,14 +61,32 @@ var checkPages = function() {
 	var response = null;
 
 	kango.xhr.send(details, function(data) {
-		kango.console.log('status : ' + data.status);
-
         if (data.status == 200 && data.response != null) {
         	response = {'data':data.response, 'url': document.location.href};
         	if (Object.getOwnPropertyNames(data.response).length != 0) {
-        		kango.console.log('Ok');
         		totalNotifications += 1;
         		notificationFlag |= 1 << 2;        		
+        	}
+        } else { 
+	        kango.console.log('something went wrong');
+        }
+	});
+
+	var connectionDetails = {
+		method: 'POST',
+		url: 'http://rdf-translator.appspot.com/convert/detect/pretty-xml/' + encodeURIComponent(document.location.href),
+		async: false,
+		contentType: 'application/rdf+xml'
+	};
+	var responseXML = null
+
+	kango.xhr.send(connectionDetails, function(data) {
+		kango.console.log('status : ' + data.status);
+
+        if (data.status == 200 && data.response != null) {
+        	response['xml'] = data.response;
+        	if (Object.getOwnPropertyNames(data.response).length != 0) {
+        		kango.console.log('Ok');
         	}
         } else { 
 	        kango.console.log('something went wrong');
@@ -75,6 +98,7 @@ var checkPages = function() {
 			kango.dispatchMessage('sendRDFaData', response);
 		}
 	});
+
 
 	/* send content*/
 	var data = {
