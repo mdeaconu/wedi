@@ -1,7 +1,7 @@
 {
     "name": "#wedi",
     "description": "Extension for extracting RDFa, microdata and microformats", 
-    "creator": "mdeaconu", 
+    "creator": "Mihai Deaconu", 
     "background_scripts": [
         "main.js"
     ], 
@@ -9,7 +9,7 @@
 		"WediOnAccess.js"
 	], 
     "homepage_url": "https://github.com/mdeaconu/wedi", 
-    "version": "0.2.1", 
+    "version": "0.2.2", 
     "browser_button": {
         "caption": "wedi", 
         "icon": "icons/button.png", 
