@@ -1,6 +1,7 @@
 function show_rdf(envelope) {
-	var code = document.getElementById("code_rdf");
-	var address =document.getElementById("address_rdf");
+	var code 	= document.getElementById("code_rdf");
+	var address = document.getElementById("address_rdf");
+	var xml		= document.getElementById("xml_rdf");
 
 	if (envelope) {
 		code = document.getElementById("code_rdf");
@@ -8,6 +9,7 @@ function show_rdf(envelope) {
 		code.textContent = js_beautify(jsonstring);
 
 		address.textContent = envelope.url;
+		xml.textContent = '<?xml version="1.0" encoding="utf-8"?><aTag>something</aTag>';
 	}	
 }
 
