@@ -26,19 +26,23 @@
     background-color:#FFD8BB;
     border:thin solid #FFB780;
 }
+
 .object {
     background-color: #5082BC;
     border:thin solid #7DA2CE;
 }
+
 .string {
-    color:red;
+    color: rgb(97,12,22);
     font-size: 9pt;
     overflow-x: hidden; 
 }
+
 .number {
     color:blue;
     font-size: 9pt;
 }
+
 .function {
     color:green;
     font-size: 9pt;
@@ -47,6 +51,7 @@
 .open .children {
     display:block;
 }
+
 .closed .children {
     display:none;
 }
@@ -74,7 +79,7 @@
 }
 
 .value {
-    color:red;
+    color: rgb(97,12,22);
     font-size: 9pt; 
     overflow-x: hidden;   
 }

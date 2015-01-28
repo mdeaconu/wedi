@@ -112,18 +112,21 @@ KangoAPI.onReady(function() {
 	kango.addMessageListener('sendMFData', function(event) {
 		document.getElementById('empty').style.display = 'none';
 		document.getElementById('mf').style.display = 'block';
+		KangoAPI.resizeWindow(500, 450);
 		show_mf(event.data);
 	});
 
 	kango.addMessageListener('sendMDData', function(event) {
 		document.getElementById('empty').style.display = 'none';
 		document.getElementById('md').style.display = 'block';
+		KangoAPI.resizeWindow(500, 450);
 		show_md(event.data);
 	});
 	
 	kango.addMessageListener('sendRDFaData', function(event) {
 		document.getElementById('empty').style.display = 'none';
 		document.getElementById('rdf').style.display = 'block';
+		KangoAPI.resizeWindow(500, 450);
 		show_rdf(event.data);
 	});
 

@@ -14,7 +14,7 @@
 	}
 
 	kango.browser.addEventListener(kango.browser.event.TAB_CHANGED, check);  
-	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 500, height:450});
+	kango.ui.browserButton.setPopup({url:'wedipage_ui.html', width: 400, height:120});
 
 	self.clear();
 }
