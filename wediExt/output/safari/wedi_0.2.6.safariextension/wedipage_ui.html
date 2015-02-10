@@ -1,0 +1,67 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script type="text/javascript" src="kango-ui/kango_api.js"></script>
+  <script type="text/javascript" src="lib/jsbeautify.js"></script>
+  <script type="text/javascript" src="WediVisualiser.js"></script>
+  <script type="text/javascript" src="js/json2xml.js"></script>
+  <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+  <script type='text/javascript' src='js/json2html.js' ></script>
+  <script type='text/javascript' src='js/jquery.json2html.js'></script>
+  <script type='text/javascript' src='js/wedi2html.js'></script>
+  <link rel="stylesheet" type="text/css" href="css/visualiser.css" />
+  <link rel="stylesheet" type="text/css" href="css/wedi2html.css" />
+</head>
+<body>
+  <div class="hheader">
+    <img class="img_h" src="icons/icon48.png" alt="" />#wedi
+  </div>
+  <div class="main">
+    <div id="empty">
+      <center><span class="button"><p>Press F5 to reload the current tab</p></span></center>
+    </div>
+    <div id="mf" class="section">
+      <div class="title">Microformats</div>
+      <div class="box">
+        <div><span class="fieldName">URL:</span><span id="address_mf"></span></div>
+        <div><span id="tags_mf" class="fieldName">Found:</span></div>
+        <div>
+          <span class="fieldName">JSON:</span>
+          <button id='btnVisualize1' class='tag' style='float:right;'>Visualize</button>
+          <pre class="json_data" id="code_mf"></pre>
+        </div>
+        <div id="code_mf_h"></div>
+      </div>
+    </div>
+
+    <div id="md" class="section">
+      <div class="title">Microdata</div>
+      <div class="box">
+        <div><span class="fieldName">URL:</span><span id="address_md"></span></div>
+        <div><span id="tags_md" class="fieldName">Found:</span></div>
+        <div>
+          <span class="fieldName">JSON:</span>
+          <button id='btnVisualize2' class='tag' style='float:right;'>Visualize</button>
+          <pre class="json_data" id="code_md"></pre>
+        </div>
+        <div id="code_md_h"></div>
+      </div>
+    </div>
+
+    <div id="rdf" class="section">
+      <div class="title">RDFa</div>
+      <div class="box">
+        <div><span class="fieldName">URL:</span><span id="address_rdf"></span></div>
+        <div>
+          <span class="fieldName">JSON:</span>
+          <button id="btnVisualize4" class='tag' style='float:right;'>Visualise RDF/XML</button>
+          <button id="btnVisualize3" class='tag' style='float:right;'>Visualise</button>
+          <pre class="json_data" id="code_rdf"></pre>
+          <pre class="json_data" id="code_xml"></pre>
+        </div>
+        <div id="code_rdf_h"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

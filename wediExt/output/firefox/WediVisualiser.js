@@ -90,7 +90,7 @@ function found_md(items, url) {
 			}
 		}
 	}
-	kango.console.log('tags : ' + tags.length);
+
 	if (tags.length > 0) {
 		var dom = document.getElementById('tags_md');
 		var len = dom.childNodes.length;
@@ -100,10 +100,23 @@ function found_md(items, url) {
 		for (var x = 0; x < tags.length; ++x) {
 			var tagSpan = document.createElement('span');
 			tagSpan.setAttribute('class', 'tag');
+			tagSpan.setAttribute('onclick', 'highlightMe(this)');
+			tagSpan.style.cursor = 'crosshair';
 			tagSpan.innerHTML = tags[x];
 			document.getElementById('tags_md').appendChild(tagSpan);
 		}		
 	}
+}
+
+
+function highlightMe(me) {
+	kango.browser.tabs.getCurrent(function(tab) {
+		if (!tab.isActive()) {
+			return;
+		}
+
+		tab.dispatchMessage('highlightMe', {'type': me.textContent});
+	});
 }
 
 KangoAPI.onReady(function() {

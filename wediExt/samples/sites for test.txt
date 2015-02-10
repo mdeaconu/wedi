@@ -6,4 +6,3 @@ microformats sites
 microdata sites
 * https://github.com/LawrenceWoodman/mida/wiki/Sites-Using-Microdata
 
-http://rdf-translator.appspot.com/

@@ -10,7 +10,7 @@
         "WediExporter.js"
 	], 
     "homepage_url": "https://github.com/mdeaconu/wedi", 
-    "version": "0.2.5", 
+    "version": "0.2.6", 
     "browser_button": {
         "caption": "wedi", 
         "icon": "icons/button.png", 

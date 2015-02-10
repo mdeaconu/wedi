@@ -37,7 +37,7 @@ var checkPages = function() {
 	var microdata = $.microdata.json();
 	var microdata_json = JSON.parse(microdata);
 	var	microdata_data = {'data': microdata_json, 'url': document.location.href};
-
+	console.log('microdata ' + microdata);
 	if (microdata_json && microdata_json.items.length > 0) {
 		totalNotifications += 1;
 		notificationFlag |= 1 << 1;
@@ -54,11 +54,11 @@ var checkPages = function() {
 		method: 'GET',
 		url: 'http://getschema.org/rdfaliteextractor',
 		async: false,
-		params: {'url': document.location.href, 'out': 'json'},
+		params: {'url': encodeURIComponent(document.location.href), 'out': 'json'},
 		contentType: 'json'
 	}
 
-	var response = null;
+	var response = {};
 
 	kango.xhr.send(details, function(data) {
         if (data.status == 200 && data.response != null) {
@@ -68,7 +68,7 @@ var checkPages = function() {
         		notificationFlag |= 1 << 2;        		
         	}
         } else { 
-	        kango.console.log('something went wrong');
+	        kango.console.log('something went wrong[RDFa]');
         }
 	});
 
@@ -78,7 +78,6 @@ var checkPages = function() {
 		async: false,
 		contentType: 'application/rdf+xml'
 	};
-	var responseXML = null
 
 	kango.xhr.send(connectionDetails, function(data) {
 		kango.console.log('status : ' + data.status);
@@ -94,7 +93,7 @@ var checkPages = function() {
 	});
 
 	kango.addMessageListener('getRDFaData', function() {
-		if (response && Object.getOwnPropertyNames(response.data).length != 0) {
+		if (Object.getOwnPropertyNames(response).length != 0 && Object.getOwnPropertyNames(response.data).length != 0) {
 			kango.dispatchMessage('sendRDFaData', response);
 		}
 	});
@@ -115,4 +114,17 @@ checkPages();
 
 kango.addMessageListener('check', function(event) {
 	checkPages();
+});
+
+kango.addMessageListener('highlightMe', function(event) {
+	var type = event.data.type;
+	kango.console.log("type : " + type);
+
+	var objList = document.querySelectorAll('[itemtype="' + type + '"]');
+	console.log(objList);
+	for (var i=0; i<objList.length; ++i) {
+		var elem = objList[i];
+		kango.console.log('elem : ' + elem.toString());
+		elem.style.backgroundColor = 'blue';
+	}
 });
